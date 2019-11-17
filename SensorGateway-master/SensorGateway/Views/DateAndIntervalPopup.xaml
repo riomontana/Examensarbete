@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="SensorGateway.Views.DateAndIntervalPopup"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+  
+    <StackLayout Margin="12" 
+                 Padding="24" 
+                 Spacing="24" 
+                 BackgroundColor="White" 
+                 HorizontalOptions="FillAndExpand" 
+                 VerticalOptions="FillAndExpand">
+    
+        <Label Text="Start Date:" />
+        
+        <DatePicker x:Name="datePickerFrom" 
+                    Date ="{Binding DateAndInterval.FromDate}"
+                    MinimumDate ="{Binding MinimumDate}" 
+                    Format="dd/MM/yyyy" />
+
+        <Label Text="End Date:" />
+
+        <DatePicker x:Name="datePickerTo" 
+                    Date="{Binding DateAndInterval.ToDate}" 
+                    MinimumDate ="{Binding DateAndInterval.FromDate}" 
+                    Format="dd/MM/yyyy" />
+
+        <Label Text="{Binding DateAndInterval.Interval, StringFormat='Interval: {0:0} minutes'}"/>
+
+        <Slider MaximumTrackColor="Silver" MinimumTrackColor="Green" Value="{Binding DateAndInterval.Interval, Mode=TwoWay}" x:Name="sliderInterval" Maximum="120" Minimum="1" />
+
+        <Button Text="Save" Command="{Binding SaveDateAndIntervalCommand}"/>
+
+        <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+
+    </StackLayout>
+
+</pages:PopupPage>

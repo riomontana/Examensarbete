@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SensorGateway.Views.SelectSensorsPage"
+             Navigation="{Binding Navigation}"
+             Title="Add/Remove Sensors">
+
+    <ContentPage.ToolbarItems>
+ 
+        <ToolbarItem Text="Select all" 
+                     Command="{Binding ClickedSelectAllSensorsCommand}"></ToolbarItem>  
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        <StackLayout Padding="16">
+            
+            <Label Text="Searching for Bluetooth devices..." 
+                   FontSize="Medium" 
+                   IsVisible="{Binding IsBusy}"/>
+            <ActivityIndicator VerticalOptions="Center"
+                IsVisible="{Binding IsBusy}" 
+                IsRunning="{Binding IsBusy}" />
+            
+            <ListView HasUnevenRows="true" 
+                      ItemsSource="{Binding SensorList}">
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <ViewCell>
+
+                            <StackLayout Padding="4" 
+                                         Orientation="Horizontal">
+
+                                <StackLayout Padding="4" 
+                                             Orientation="Vertical">
+
+                                    <Label Text="{Binding Name}" 
+                                           HorizontalOptions="StartAndExpand" />
+
+                                    <Label Text="{Binding Uuid}" 
+                                           FontSize="Micro" 
+                                           HorizontalOptions="StartAndExpand" />
+
+                                </StackLayout>
+
+                                <Button Text="Update" 
+                                        VerticalOptions="Start" 
+                                        IsEnabled="{Binding IsActive}" 
+                                        Clicked="Update_Clicked"/>
+
+                                <Switch IsToggled="{Binding IsActive, 
+                                        Mode=TwoWay}" 
+                                        HorizontalOptions="EndAndExpand" />
+
+                            </StackLayout>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

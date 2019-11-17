@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:SensorGateway.Views" 
+             x:Class="SensorGateway.Views.MainPage"
+             Title="Sensor Gateway"
+             Navigation="{Binding Navigation}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Icon="drawable/icon.png">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <Grid>
+        <StackLayout Padding="16">
+            <Label x:Name="lblUserLocation"
+                Text="{Binding StrUserLocation}" 
+                FontSize="Medium"/>
+        </StackLayout>
+        <Grid VerticalOptions="CenterAndExpand">
+            <StackLayout VerticalOptions="End" 
+                     Padding="16" Margin="0,0,0,40">
+                       <StackLayout VerticalOptions="Start" 
+                     Padding="16">
+                     <Image Source="drawable/logo_cgi_color"></Image>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding StrLocationOnOff}"
+                           VerticalOptions="Center"
+                           FontSize="Large"/>
+                    <Switch x:Name="switchLocation" 
+                            IsToggled="{Binding IsTrackingLocation, Mode=TwoWay}"
+                            HorizontalOptions="EndAndExpand"/>
+                </StackLayout> 
+            
+                </StackLayout>
+                    <Button x:Name="btnSensorList" 
+                        Text="Active Sensors" 
+                        Command="{Binding ShowSensorListPageCommand}"
+                        BackgroundColor="#E31937"
+                        TextColor="White"
+                            Margin="0,0,0,15"/>
+                    <Button x:Name="btnAddSensors" 
+                        Text="Add / Remove Sensors" 
+                        Command="{Binding ShowSelectSensorsPageCommand}"
+                        BackgroundColor="#E31937"
+                        TextColor="White"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
